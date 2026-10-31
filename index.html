@@ -43,6 +43,8 @@ p{margin:0 0 12px}
 .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+.thumb img,.hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb,.hero-art{overflow:hidden}
 .thumb{height:120px;border-radius:4px;background:var(--soft);margin-bottom:14px;display:grid;place-items:center;color:var(--muted);font-size:.8rem}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .tag{font-size:.76rem;background:var(--soft);padding:3px 10px;border-radius:4px;color:var(--muted);font-weight:500}
@@ -112,7 +114,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
         <a class="btn alt" href="#contact">Get In Touch</a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">FM</div>
+    <div class="hero-art"><img src="images/foto-profil.jpg" alt="Foto Muhammad Fahmi Mauludin" onerror="this.parentNode.textContent='FM'"></div>
   </div>
 
   <h2>What I Do</h2>
@@ -124,9 +126,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
   <h2>Featured Projects</h2>
   <div class="grid g3">
-    <div class="card"><div class="thumb">Thumbnail</div><h3>Infrastructure Monitoring</h3><p class="muted">Zabbix · Grafana · Docker</p></div>
-    <div class="card"><div class="thumb">Thumbnail</div><h3>Internal Tools</h3><p class="muted">Node.js · MySQL · Docker</p></div>
-    <div class="card"><div class="thumb">Thumbnail</div><h3>Automation Scripts</h3><p class="muted">Python · Google API</p></div>
+    <div class="card"><div class="thumb"><img src="images/project-1.jpg" alt="Project 1" onerror="this.parentNode.textContent='Thumbnail'"></div><h3>Infrastructure Monitoring</h3><p class="muted">Zabbix · Grafana · Docker</p></div>
+    <div class="card"><div class="thumb"><img src="images/project-2.jpg" alt="Project 2" onerror="this.parentNode.textContent='Thumbnail'"></div><h3>Internal Tools</h3><p class="muted">Node.js · MySQL · Docker</p></div>
+    <div class="card"><div class="thumb"><img src="images/project-3.jpg" alt="Project 3" onerror="this.parentNode.textContent='Thumbnail'"></div><h3>Automation Scripts</h3><p class="muted">Python · Google API</p></div>
   </div>
   <p style="margin-top:14px"><a href="#projects">Lihat semua project</a></p>
 
@@ -261,6 +263,7 @@ var POSTS=[
 ["Migrasi Server ke Cloud AWS","Cloud","Persiapan, langkah-langkah, dan hal yang perlu diperhatikan saat migrasi ke AWS.","18 Agu 2026 · 8 menit baca"]];
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+function pic(src,alt){return '<img src="'+src+'" alt="'+esc(alt)+'" loading="lazy" onerror="this.parentNode.textContent=\'Thumbnail\'">'}
 
 /* routing via hash */
 function route(){
@@ -283,14 +286,14 @@ $("#indexList").innerHTML=PAGES.map(function(p){return '<li><a href="#'+p[0]+'">
 var pf="all",bf="all";
 function drawProjects(){
   $("#projectGrid").innerHTML=PROJECTS.filter(function(p){return pf==="all"||p[1]===pf}).map(function(p){
-    return '<article class="card"><div class="thumb">Thumbnail</div><h3>'+esc(p[0])+'</h3><p class="muted" style="margin:0">'+esc(p[2])+'</p><div class="tags">'+p[3].map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div></article>';
+    return '<article class="card"><div class="thumb">'+pic('images/project-'+(PROJECTS.indexOf(p)+1)+'.jpg',p[0])+'</div><h3>'+esc(p[0])+'</h3><p class="muted" style="margin:0">'+esc(p[2])+'</p><div class="tags">'+p[3].map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div></article>';
   }).join("");
 }
 function drawBlog(){
   var q=$("#q").value.toLowerCase().trim();
   var list=POSTS.filter(function(p){return(bf==="all"||p[1]===bf)&&(p[0]+" "+p[2]).toLowerCase().indexOf(q)>-1});
   $("#blogList").innerHTML=list.length?list.map(function(p){
-    return '<article class="card" style="display:grid;grid-template-columns:120px 1fr;gap:18px"><div class="thumb" style="height:84px;margin:0">Thumbnail</div><div><h3>'+esc(p[0])+'</h3><p class="muted" style="margin-bottom:6px">'+esc(p[2])+'</p><span class="tag">'+esc(p[1])+'</span> <span class="muted" style="font-size:.8rem">'+esc(p[3])+'</span></div></article>';
+    return '<article class="card" style="display:grid;grid-template-columns:120px 1fr;gap:18px"><div class="thumb" style="height:84px;margin:0">'+pic('images/blog-'+(POSTS.indexOf(p)+1)+'.jpg',p[0])+'</div><div><h3>'+esc(p[0])+'</h3><p class="muted" style="margin-bottom:6px">'+esc(p[2])+'</p><span class="tag">'+esc(p[1])+'</span> <span class="muted" style="font-size:.8rem">'+esc(p[3])+'</span></div></article>';
   }).join(""):'<div class="card muted">Tidak ada artikel yang cocok. Coba kata kunci lain atau pilih kategori All.</div>';
 }
 document.querySelectorAll(".chips").forEach(function(g){
