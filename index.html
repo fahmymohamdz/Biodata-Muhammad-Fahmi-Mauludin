@@ -98,7 +98,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
         <li><a href="#experience">Experience</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#biodata">Biodata</a></li>
+        <li><a href="biodata.html">Biodata</a></li>
       </ul>
     </nav>
     <a class="btn" href="#contact">Download CV</a>
@@ -243,29 +243,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
   </div>
 </section>
 
-<!-- BIODATA -->
-<section class="page" id="biodata">
-  <h1>Form Biodata Mahasiswa</h1>
-  <p class="muted">Isi data berikut dengan benar. Data tersimpan di browser Anda saja.</p>
-  <div class="grid g2" style="margin-top:22px;align-items:start">
-    <form class="card" id="bioForm" novalidate>
-      <div><label for="nik">NIK</label><input id="nik" inputmode="numeric" maxlength="16" placeholder="16 digit angka" autocomplete="off" required><div class="hint">Sesuai KTP, 16 digit.</div><div class="err" id="nikE"></div></div>
-      <div><label for="nama">Nama Mahasiswa</label><input id="nama" autocomplete="name" required><div class="err" id="namaE"></div></div>
-      <div><label for="nim">NIM</label><input id="nim" inputmode="numeric" placeholder="Contoh: 411242036" required><div class="err" id="nimE"></div></div>
-      <div><label for="fak">Fakultas</label>
-        <select id="fak" required><option value="">Pilih fakultas</option><option>Fakultas Teknik Informatika</option><option>Fakultas Ekonomi dan Bisnis</option><option>Fakultas Ilmu Komunikasi</option><option>Fakultas Hukum</option><option>Lainnya</option></select>
-        <div class="err" id="fakE"></div></div>
-      <div><label for="prodi">Program Studi</label><input id="prodi" placeholder="Contoh: Teknik Informatika" required><div class="err" id="prodiE"></div></div>
-      <button class="btn" type="submit">Simpan Biodata</button>
-      <div class="ok" id="bioOk" role="status"></div>
-    </form>
-    <div class="card">
-      <h3>Biodata tersimpan</h3>
-      <div class="scroll" id="bioTable"></div>
-      <div class="notice" style="margin-top:14px">NIK adalah data pribadi. Website ini statis dan tidak mengirim data ke server data hanya tersimpan di browser perangkat ini.</div>
-    </div>
-  </div>
-</section>
+
 
 </div>
 </main>
@@ -275,7 +253,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 </footer>
 
 <script>
-var PAGES=[["home","Home","Ringkasan profil dan layanan"],["about","About","Pendidikan, keahlian, sertifikasi"],["projects","Projects","Karya terpilih dengan filter kategori"],["karya","Karya Web","21 proyek website dan aplikasi untuk klien"],["experience","Experience","Perjalanan karier"],["blog","Blog","Artikel teknologi dan infrastruktur"],["contact","Contact","Kirim pesan"],["biodata","Biodata","Form biodata mahasiswa"]];
+var PAGES=[["home","Home","Ringkasan profil dan layanan"],["about","About","Pendidikan, keahlian, sertifikasi"],["projects","Projects","Karya terpilih dengan filter kategori"],["karya","Karya Web","21 proyek website dan aplikasi untuk klien"],["experience","Experience","Perjalanan karier"],["blog","Blog","Artikel teknologi dan infrastruktur"],["contact","Contact","Kirim pesan"]];
 var PROJECTS=[
 ["Infrastructure Monitoring System","Infrastructure","Monitoring dan alerting untuk 600+ outlet memakai Zabbix dan Grafana.",["Zabbix","Grafana","Linux"]],
 ["Internal IT Service Portal","Backend","Sistem tiket dan manajemen aset untuk operasional IT.",["Node.js","MySQL","Docker"]],
@@ -307,7 +285,7 @@ function route(){
 window.addEventListener("hashchange",route);
 
 /* index list */
-$("#indexList").innerHTML=PAGES.map(function(p){return '<li><a href="#'+p[0]+'"><span><b>'+p[1]+'</b><span class="muted">'+p[2]+'</span></span><span aria-hidden="true">›</span></a></li>'}).join("");
+$("#indexList").innerHTML=PAGES.map(function(p){return '<li><a href="#'+p[0]+'"><span><b>'+p[1]+'</b><span class="muted">'+p[2]+'</span></span><span aria-hidden="true">›</span></a></li>'}).join("")+'<li><a href="biodata.html"><span><b>Biodata</b><span class="muted">Data diri mahasiswa (halaman terpisah)</span></span><span aria-hidden="true">›</span></a></li>';
 
 /* projects + blog rendering */
 var pf="all",bf="all";
@@ -352,35 +330,7 @@ $("#contactForm").addEventListener("submit",function(e){
   if(a&&b&&c){$("#contactOk").textContent="Pesan terkirim. Terima kasih, saya akan segera membalas.";this.reset()}
 });
 
-/* biodata */
-var KEY="biodata-mahasiswa";
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
-function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));return true}catch(e){return false}}
-function drawBio(){
-  var a=load();
-  $("#bioTable").innerHTML=a.length?'<table><thead><tr><th>Nama</th><th>NIM</th><th>NIK</th><th>Fakultas</th><th></th></tr></thead><tbody>'+a.map(function(r,i){
-    return '<tr><td>'+esc(r.nama)+'<div class="muted" style="font-size:.8rem">'+esc(r.prodi)+'</div></td><td>'+esc(r.nim)+'</td><td>'+esc(r.nik.slice(0,4))+'••••••••'+esc(r.nik.slice(-4))+'</td><td>'+esc(r.fak)+'</td><td><button class="link-btn" data-del="'+i+'" aria-label="Hapus biodata '+esc(r.nama)+'">Hapus</button></td></tr>';
-  }).join("")+'</tbody></table>':'<p class="muted">Belum ada biodata. Isi form di samping lalu pilih Simpan Biodata.</p>';
-}
-$("#bioTable").addEventListener("click",function(e){
-  var d=e.target.dataset.del;if(d===undefined)return;
-  var a=load();a.splice(+d,1);save(a);drawBio();
-});
-$("#nik").addEventListener("input",function(){this.value=this.value.replace(/\D/g,"")});
-$("#nim").addEventListener("input",function(){this.value=this.value.replace(/\D/g,"")});
-$("#bioForm").addEventListener("submit",function(e){
-  e.preventDefault();$("#bioOk").textContent="";
-  var nik=$("#nik").value.trim(),ok=true;
-  if(!nik)ok=setErr("nik","NIK wajib diisi.")&&ok;else if(nik.length!==16)ok=setErr("nik","NIK harus 16 digit. Saat ini "+nik.length+" digit.")&&ok&&false;else setErr("nik","");
-  var r=[req("nama","Nama mahasiswa"),req("nim","NIM"),req("fak","Fakultas"),req("prodi","Program studi")];
-  if(!(ok&&r.every(Boolean)))return;
-  var a=load();
-  a.push({nik:nik,nama:$("#nama").value.trim(),nim:$("#nim").value.trim(),fak:$("#fak").value,prodi:$("#prodi").value.trim()});
-  if(save(a)){$("#bioOk").textContent="Biodata tersimpan.";this.reset();drawBio()}
-  else $("#bioOk").textContent="Browser memblokir penyimpanan. Aktifkan penyimpanan lokal lalu coba lagi.";
-});
-
-drawProjects();drawKarya();drawBlog();drawBio();route();
+drawProjects();drawKarya();drawBlog();route();
 </script>
 </body>
 </html>
