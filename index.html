@@ -77,6 +77,12 @@ footer{border-top:1px solid var(--line);background:var(--surface);padding:24px 0
 footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .search{max-width:420px}
 @media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{max-width:240px;font-size:4rem}.nav ul{margin:0;order:3;width:100%}}
+.karya .thumb{height:190px}
+.karya .thumb img{object-position:top}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin:18px 0 0}
+.stats b{display:block;font-size:1.6rem;line-height:1.1}
+.stats span{font-size:.85rem;color:var(--muted)}
+.plink{display:inline-block;margin-top:10px;font-weight:600;font-size:.9rem;color:var(--navy)}
 </style>
 </head>
 <body>
@@ -88,6 +94,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#karya">Karya Web</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -170,6 +177,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
   <div class="grid g2" id="projectGrid"></div>
 </section>
 
+<!-- KARYA WEB -->
+<section class="page karya" id="karya">
+  <h1>Karya Web untuk Klien</h1>
+  <p class="muted" style="max-width:68ch">Website, microsite event, mobile apps, dan platform digital yang saya kerjakan dari nol sampai live, untuk klien dari sektor energi, telekomunikasi, perbankan, pendidikan, pariwisata, dan lainnya.</p>
+  <div class="stats">
+    <div><b>21+</b><span>Proyek selesai</span></div>
+    <div><b>3+</b><span>Tahun pengalaman</span></div>
+    <div><b>15+</b><span>Klien dilayani</span></div>
+  </div>
+  <div class="chips" role="group" aria-label="Filter kategori karya web" data-filter="karya">
+    <button class="chip" aria-pressed="true" data-c="all">Semua</button>
+    <button class="chip" aria-pressed="false" data-c="event">Event &amp; Microsite</button>
+    <button class="chip" aria-pressed="false" data-c="corporate">Corporate</button>
+    <button class="chip" aria-pressed="false" data-c="portal">Portal &amp; Berita</button>
+    <button class="chip" aria-pressed="false" data-c="apps">Apps &amp; Platform</button>
+  </div>
+  <div class="grid g3" id="karyaGrid"></div>
+</section>
+
 <!-- EXPERIENCE -->
 <section class="page" id="experience">
   <h1>My Professional Journey</h1>
@@ -203,6 +229,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
   <div class="grid g2" style="margin-top:22px;align-items:start">
     <div class="card">
       <h3>Email</h3><p class="muted">fahmymohamdz@gmail.com</p>
+      <h3>WhatsApp</h3><p class="muted"><a href="https://wa.me/6281210422246" target="_blank" rel="noopener">+62 812 1042 2246</a></p>
       <h3>LinkedIn</h3><p class="muted">https://www.linkedin.com/in/fahmy-mohamad</p>
       <h3>Lokasi</h3><p class="muted" style="margin:0">Bekasi, Indonesia</p>
     </div>
@@ -248,7 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 </footer>
 
 <script>
-var PAGES=[["home","Home","Ringkasan profil dan layanan"],["about","About","Pendidikan, keahlian, sertifikasi"],["projects","Projects","Karya terpilih dengan filter kategori"],["experience","Experience","Perjalanan karier"],["blog","Blog","Artikel teknologi dan infrastruktur"],["contact","Contact","Kirim pesan"],["biodata","Biodata","Form biodata mahasiswa"]];
+var PAGES=[["home","Home","Ringkasan profil dan layanan"],["about","About","Pendidikan, keahlian, sertifikasi"],["projects","Projects","Karya terpilih dengan filter kategori"],["karya","Karya Web","21 proyek website dan aplikasi untuk klien"],["experience","Experience","Perjalanan karier"],["blog","Blog","Artikel teknologi dan infrastruktur"],["contact","Contact","Kirim pesan"],["biodata","Biodata","Form biodata mahasiswa"]];
 var PROJECTS=[
 ["Infrastructure Monitoring System","Infrastructure","Monitoring dan alerting untuk 600+ outlet memakai Zabbix dan Grafana.",["Zabbix","Grafana","Linux"]],
 ["Internal IT Service Portal","Backend","Sistem tiket dan manajemen aset untuk operasional IT.",["Node.js","MySQL","Docker"]],
@@ -284,6 +311,13 @@ $("#indexList").innerHTML=PAGES.map(function(p){return '<li><a href="#'+p[0]+'">
 
 /* projects + blog rendering */
 var pf="all",bf="all";
+var KARYA=[["01", "event", "Event · RFID System", "AMMTC 2023 — Labuan Bajo", "Sistem registrasi peserta ASEAN berbasis RFID tap-in, microsite acara, dan dashboard report absensi real-time untuk 742 delegasi.", "https://17thammtc.com/"], ["02", "corporate", "Corporate · Bilingual", "Pertagas Niaga", "Website company profile Pertamina Group dua bahasa (ID/EN) untuk anak perusahaan Subholding Gas.", "https://www.pertagasniaga.pertamina.com/"], ["03", "event", "Event · QR System", "HUT Telkomsel ke-57", "Microsite registrasi on-the-spot dengan QR Code — peserta daftar dan scan QR saat masuk acara.", ""], ["04", "event", "Event · Upload Platform", "Bucin Squad bluBCA", "Platform upload video & proposal dengan sistem penilaian oleh tim BCA untuk event Bucin Squad.", ""], ["05", "event", "Event · Microsite", "AOB Convention — 26th NHC", "Microsite internasional AOB Convention dengan registrasi PCM, event, dan dashboard peserta 10 negara.", ""], ["06", "event", "Event · Live Chat", "WIKA Live Event", "Microsite live event dengan registrasi, appointment booking, dan live chat untuk peserta event WIKA.", ""], ["07", "apps", "Platform · HR Tech", "Recruitment Astra Financial", "Platform rekrutmen karyawan Group Astra — upload dokumen, testing online, pemilihan posisi, verifikasi HRD.", ""], ["08", "corporate", "Corporate · Multinational", "PT Menthobi Karyatama Raya TBK", "Website company profile perusahaan publik multinasional komoditas perkebunan.", ""], ["09", "portal", "Portal · Berita Politik", "KabarGolkar", "Portal berita resmi Partai Golkar — DPP, nasional, daerah, parlemen, dan fitur voting menuju Pemilu 2024.", ""], ["10", "corporate", "Pendidikan · Campus", "Universitas Dian Nusantara", "Website kampus & sistem pendaftaran mahasiswa baru online — termasuk portal PMB dengan potongan biaya 50%.", ""], ["11", "event", "Event · Doorprize", "Tupperware Festival 2022–2023", "Microsite live event dua tahun berturut-turut dengan registrasi, doorprize, dan galeri foto.", ""], ["12", "apps", "Travel · Community", "Sebumi", "Platform komunitas sustainable lifestyle dengan paket traveling dan konservasi alam Indonesia.", ""], ["13", "apps", "Innovation · Event", "Lenovo Innovate '23", "Platform event Lenovo dengan registrasi, QR code entrance, special promo, dan competition online.", ""], ["14", "apps", "Marketplace · Mobile Apps", "Baitullah — Haji & Umroh", "Marketplace lengkap Haji & Umroh tersedia web dan mobile apps — cari paket, Kiblat, Quran, Jadwal Shalat.", ""], ["15", "apps", "POS · Mobile Apps", "Arihta MX", "Point of Sales monitoring penjualan & stok, dilengkapi mobile apps pemesanan spare part motor.", ""], ["16", "apps", "Travel Apps", "Wondo Apps", "Aplikasi traveling Indonesia — eksplorasi pantai, gunung, desa wisata, dan hutan Nusantara.", ""], ["17", "portal", "Portal Berita", "Epicentrum", "Portal berita komprehensif — politik, ekonomi, hukum, gaya hidup, olahraga, dan commerce.", ""], ["18", "apps", "Dashboard · Monitoring", "Red White Indonesia", "Dashboard monitoring sales marketing — target pencapaian per grup & personal secara real-time.", ""], ["19", "corporate", "Pendidikan · School", "Lazuardi Al-Falah", "Website sekolah internasional Lazuardi Al-Falah — informasi program, lingkungan, dan FAQ.", ""], ["20", "corporate", "Hotel · Hospitality", "Daima Hotel", "Website luxury hotel & resort dengan booking system, galeri kamar, dan informasi fasilitas.", ""], ["21", "corporate", "Corporate · Investment", "Lux Alvest Capital", "Company profile firma investasi & advisory Indonesia — strategi, services, dan portfolio.", ""]];
+var kf="all";
+function drawKarya(){
+  $("#karyaGrid").innerHTML=KARYA.filter(function(p){return kf==="all"||p[1]===kf}).map(function(p){
+    return '<article class="card"><div class="thumb">'+pic("images/portfolio-"+p[0]+".jpg",p[3])+'</div><span class="tag">'+esc(p[2])+'</span><h3 style="margin-top:10px">'+esc(p[3])+'</h3><p class="muted" style="margin:0">'+esc(p[4])+'</p>'+(p[5]?'<a class="plink" href="'+esc(p[5])+'" target="_blank" rel="noopener">Lihat Website →</a>':"")+'</article>';
+  }).join("");
+}
 function drawProjects(){
   $("#projectGrid").innerHTML=PROJECTS.filter(function(p){return pf==="all"||p[1]===pf}).map(function(p){
     return '<article class="card"><div class="thumb">'+pic('images/project-'+(PROJECTS.indexOf(p)+1)+'.jpg',p[0])+'</div><h3>'+esc(p[0])+'</h3><p class="muted" style="margin:0">'+esc(p[2])+'</p><div class="tags">'+p[3].map(function(t){return '<span class="tag">'+esc(t)+'</span>'}).join("")+'</div></article>';
@@ -300,7 +334,7 @@ document.querySelectorAll(".chips").forEach(function(g){
   g.addEventListener("click",function(e){
     var b=e.target.closest(".chip");if(!b)return;
     g.querySelectorAll(".chip").forEach(function(c){c.setAttribute("aria-pressed",c===b)});
-    if(g.dataset.filter==="projects"){pf=b.dataset.c;drawProjects()}else{bf=b.dataset.c;drawBlog()}
+    if(g.dataset.filter==="projects"){pf=b.dataset.c;drawProjects()}else if(g.dataset.filter==="karya"){kf=b.dataset.c;drawKarya()}else{bf=b.dataset.c;drawBlog()}
   });
 });
 $("#q").addEventListener("input",drawBlog);
@@ -346,7 +380,7 @@ $("#bioForm").addEventListener("submit",function(e){
   else $("#bioOk").textContent="Browser memblokir penyimpanan. Aktifkan penyimpanan lokal lalu coba lagi.";
 });
 
-drawProjects();drawBlog();drawBio();route();
+drawProjects();drawKarya();drawBlog();drawBio();route();
 </script>
 </body>
 </html>
