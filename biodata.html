@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biodata Mahasiswa – Muhammad Fahmi Mauludin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f5f5;--surface:#ffffff;--ink:#222222;--muted:#666666;--line:#dcdcdc;--navy:#14365d;--navy-ink:#ffffff;--soft:#ececec;--ok:#1e7a46;--err:#b42318}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{display:flex;align-items:center;gap:16px;min-height:62px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:1.25rem;text-decoration:none}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 auto 0 24px;padding:0;flex-wrap:wrap}
+.nav li a{display:block;padding:8px 12px;border-radius:4px;text-decoration:none;font-size:.92rem;color:var(--muted);font-weight:500}
+.nav li a:hover{background:var(--soft)}
+.nav li a[aria-current="page"]{color:var(--ink);background:var(--soft);font-weight:700}
+.btn{display:inline-block;border:1.5px solid var(--navy);background:var(--navy);color:var(--navy-ink);padding:10px 20px;border-radius:4px;font:600 .92rem inherit;font-family:inherit;text-decoration:none;cursor:pointer}
+.btn:hover{opacity:.9}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.alt:hover{background:var(--soft)}
+main{padding:44px 0 64px;min-height:70vh}
+section.page{display:none}
+section.page.on{display:block}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.12;letter-spacing:-.01em;margin:0 0 14px}
+h2{font-size:1.35rem;margin:36px 0 14px;letter-spacing:-.01em}
+h3{margin:0 0 4px;font-size:1.02rem}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center}
+.hero .role{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:12px}
+.hero-art{aspect-ratio:1/1;background:var(--soft);border-radius:6px;display:grid;place-items:center;font-size:5.5rem;font-weight:700;color:var(--navy);border:1px solid var(--line)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px}
+.thumb{height:120px;border-radius:4px;background:var(--soft);margin-bottom:14px;display:grid;place-items:center;color:var(--muted);font-size:.8rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:.76rem;background:var(--soft);padding:3px 10px;border-radius:4px;color:var(--muted);font-weight:500}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 22px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 16px;border-radius:4px;font:500 .88rem inherit;font-family:inherit;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.index-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.index-list a{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;background:var(--surface);border:1px solid var(--line);border-radius:6px;text-decoration:none}
+.index-list a:hover{border-color:var(--navy)}
+.index-list b{display:block}
+.timeline{border-left:3px solid var(--line);margin-left:6px;padding-left:24px}
+.job{position:relative;padding-bottom:30px}
+.job::before{content:"";position:absolute;left:-33px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--navy);border:3px solid var(--bg)}
+.job .when{font-size:.84rem;color:var(--muted);font-weight:600}
+.job ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+form{display:grid;gap:16px}
+label{font-weight:600;font-size:.9rem;display:block;margin-bottom:5px}
+input,select,textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);font:inherit}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--err)}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+.err{font-size:.82rem;color:var(--err);margin-top:4px;min-height:1em}
+.notice{background:var(--soft);border-radius:6px;padding:12px 16px;font-size:.88rem;color:var(--muted)}
+.ok{color:var(--ok);font-weight:600;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto}
+.link-btn{background:none;border:0;color:var(--err);cursor:pointer;font:inherit;text-decoration:underline}
+footer{border-top:1px solid var(--line);background:var(--surface);padding:24px 0;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.search{max-width:420px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{max-width:240px;font-size:4rem}.nav ul{margin:0;order:3;width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">FM</a>
+    <nav aria-label="Navigasi utama"><ul id="menu"><li><a href="index.html#home">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#projects">Projects</a></li><li><a href="index.html#experience">Experience</a></li><li><a href="index.html#blog">Blog</a></li><li><a href="index.html#contact">Contact</a></li><li><a href="biodata.html" aria-current="page">Biodata</a></li></ul></nav>
+    <a class="btn" href="index.html#contact">Download CV</a>
+  </div>
+</header>
+<main>
+<div class="wrap">
+<!-- BIODATA -->
+<section id="biodata">
+  <h1>Form Biodata Mahasiswa</h1>
+  <p class="muted">Isi data berikut dengan benar. Data tersimpan di browser Anda saja.</p>
+  <div class="grid g2" style="margin-top:22px;align-items:start">
+    <form class="card" id="bioForm" novalidate>
+      <div><label for="nik">NIK</label><input id="nik" inputmode="numeric" maxlength="16" placeholder="16 digit angka" autocomplete="off" required><div class="hint">Sesuai KTP, 16 digit.</div><div class="err" id="nikE"></div></div>
+      <div><label for="nama">Nama Mahasiswa</label><input id="nama" autocomplete="name" required><div class="err" id="namaE"></div></div>
+      <div><label for="nim">NIM</label><input id="nim" inputmode="numeric" placeholder="Contoh: 411242036" required><div class="err" id="nimE"></div></div>
+      <div><label for="fak">Fakultas</label>
+        <select id="fak" required><option value="">Pilih fakultas</option><option>Fakultas Ilmu Komputer</option><option>Fakultas Ekonomi dan Bisnis</option><option>Fakultas Teknik</option><option>Fakultas Ilmu Komunikasi</option><option>Fakultas Hukum</option><option>Lainnya</option></select>
+        <div class="err" id="fakE"></div></div>
+      <div><label for="prodi">Program Studi</label><input id="prodi" placeholder="Contoh: Teknik Informatika" required><div class="err" id="prodiE"></div></div>
+      <button class="btn" type="submit">Simpan Biodata</button>
+      <div class="ok" id="bioOk" role="status"></div>
+    </form>
+    <div class="card">
+      <h3>Biodata tersimpan</h3>
+      <div class="scroll" id="bioTable"></div>
+      <div class="notice" style="margin-top:14px">NIK adalah data pribadi. Website ini statis dan tidak mengirim data ke server. Data hanya tersimpan di browser perangkat ini.</div>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+<footer>
+  <div class="wrap"><span><b style="color:var(--ink)">FM</b> · © 2026 Muhammad Fahmi Mauludin</span><span>411242036</span></div>
+</footer>
+<script>
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+
+/* form helpers */
+function setErr(id,msg){var el=$("#"+id),er=$("#"+id+"E");er.textContent=msg||"";if(msg)el.setAttribute("aria-invalid","true");else el.removeAttribute("aria-invalid");return !msg}
+function req(id,label){return setErr(id,$("#"+id).value.trim()?"":label+" wajib diisi.")}
+
+
+/* biodata */
+var KEY="biodata-mahasiswa";
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+function save(a){try{localStorage.setItem(KEY,JSON.stringify(a));return true}catch(e){return false}}
+function drawBio(){
+  var a=load();
+  $("#bioTable").innerHTML=a.length?'<table><thead><tr><th>Nama</th><th>NIM</th><th>NIK</th><th>Fakultas</th><th></th></tr></thead><tbody>'+a.map(function(r,i){
+    return '<tr><td>'+esc(r.nama)+'<div class="muted" style="font-size:.8rem">'+esc(r.prodi)+'</div></td><td>'+esc(r.nim)+'</td><td>'+esc(r.nik.slice(0,4))+'••••••••'+esc(r.nik.slice(-4))+'</td><td>'+esc(r.fak)+'</td><td><button class="link-btn" data-del="'+i+'" aria-label="Hapus biodata '+esc(r.nama)+'">Hapus</button></td></tr>';
+  }).join("")+'</tbody></table>':'<p class="muted">Belum ada biodata. Isi form di samping lalu pilih Simpan Biodata.</p>';
+}
+$("#bioTable").addEventListener("click",function(e){
+  var d=e.target.dataset.del;if(d===undefined)return;
+  var a=load();a.splice(+d,1);save(a);drawBio();
+});
+$("#nik").addEventListener("input",function(){this.value=this.value.replace(/\D/g,"")});
+$("#nim").addEventListener("input",function(){this.value=this.value.replace(/\D/g,"")});
+$("#bioForm").addEventListener("submit",function(e){
+  e.preventDefault();$("#bioOk").textContent="";
+  var nik=$("#nik").value.trim(),ok=true;
+  if(!nik)ok=setErr("nik","NIK wajib diisi.")&&ok;else if(nik.length!==16)ok=setErr("nik","NIK harus 16 digit. Saat ini "+nik.length+" digit.")&&ok&&false;else setErr("nik","");
+  var r=[req("nama","Nama mahasiswa"),req("nim","NIM"),req("fak","Fakultas"),req("prodi","Program studi")];
+  if(!(ok&&r.every(Boolean)))return;
+  var a=load();
+  a.push({nik:nik,nama:$("#nama").value.trim(),nim:$("#nim").value.trim(),fak:$("#fak").value,prodi:$("#prodi").value.trim()});
+  if(save(a)){$("#bioOk").textContent="Biodata tersimpan.";this.reset();drawBio()}
+  else $("#bioOk").textContent="Browser memblokir penyimpanan. Aktifkan penyimpanan lokal lalu coba lagi.";
+});
+
+
+drawBio();
+</script>
+</body>
+</html>
